@@ -20,7 +20,7 @@ public class PoolManager : MonoBehaviour
     public List<Vector2> ReservedPositions;
 
     [SerializeField]
-    private float boxSize = 0.62f;
+    private float boxSize = 0.7f;
 
     [SerializeField]
     private Vector2 origin = new Vector2(-2.74f, 2);
@@ -89,6 +89,8 @@ public class PoolManager : MonoBehaviour
         {
             foreach(GameObject gos in pool.prefabs)
             {
+                var temp = gos.GetComponent<Point>();
+                if(temp != null) temp.isDestruction = true;                
                 Destroy(gos);
             }
             pool.prefabs.Clear();

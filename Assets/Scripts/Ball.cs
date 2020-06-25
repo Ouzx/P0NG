@@ -7,12 +7,12 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 force = new Vector2(15f, 20f);
+    private Vector2 force = new Vector2(12, 16); //velocity = 20 unit
 
     [SerializeField]
-    private Vector2 maxSpeed = new Vector2(40, 50);
+    private float maxSpeed = 30f;
     [SerializeField]
-    private Vector2 minSpeed = new Vector2(15, 20);
+    private float minSpeed = 10f;
 
     private GameManager gm;
 
@@ -23,6 +23,26 @@ public class Ball : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    void FixedUpdate()
+    {
+        
+        if (rb != null)
+        {
+            if (rb.velocity.magnitude > maxSpeed)
+            {
+                float ratio = 1;
+                ratio = rb.velocity.magnitude / maxSpeed;
+                rb.AddForce(rb.velocity/ratio);
+            }
+            else if (rb.velocity.magnitude < minSpeed)
+            {
+                float ratio = 1;
+                ratio = rb.velocity.magnitude / maxSpeed;
+                rb.AddForce(rb.velocity/ratio);
+            }
+            Debug.Log(rb.velocity.magnitude);
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -33,7 +53,7 @@ public class Ball : MonoBehaviour
             v.x = (rb.velocity.x / 2) + (collision.collider.attachedRigidbody.velocity.x / 3);
             rb.velocity = v;
             FindObjectOfType<AudioManager>().Play("PedalBounce");
-
+            gm.GetComponent<ScoreBoard>().AddBouncePoint();
         }
         else if (collision.collider.CompareTag("Wall"))
         {
@@ -41,32 +61,35 @@ public class Ball : MonoBehaviour
         }
     }
 
+    private bool isInTrigger = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        isInTrigger = true;
         if (collision.CompareTag("Point"))
         {
             collision.gameObject.SetActive(false);
             FindObjectOfType<AudioManager>().Play("PointTaken");
-
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
+        isInTrigger = false;
         if (collision.CompareTag("Fall"))
         {
             FindObjectOfType<AudioManager>().Play("Fell");
-            
-            gm.GetComponent<LifeController>().DecreaseLife(); // <!-- Canı bir azaltır --!>
-            gm.GetComponent<LifeController>().ResetBall(true); // <!-- Topu resetler --!>
+            gm.GetComponent<LifeController>().DecreaseLife();
         }
     }
 
     public void StartBall()
     {
-        ResetBall();
-        Invoke("ThrowBall", 1f);
+        if (!isInTrigger)
+        {
+            ResetBall();
+            Invoke("ThrowBall", 1f);
+        }
     }
-
 
     private void ResetBall()
     {
@@ -74,7 +97,7 @@ public class Ball : MonoBehaviour
         transform.position = Vector2.zero;
     }
 
-    public void ThrowBall()
+    private void ThrowBall()
     {
         int rand = Random.Range(0, 2);
         if (rand == 0) rb.AddForce(force);

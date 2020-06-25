@@ -6,12 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class LifeController : MonoBehaviour
 {
-    // test
-    private int maxLife = 2;
-    private int remainedLife =2 ;
+    private int maxLife = 3;
+    private int remainedLife = 3;
 
-    private char life = 'o';
-    private char dead = 'X';
+    private char life = '♥';
+    private char dead = 'x';
     public char[] lives;
 
     private GameManager gm;
@@ -25,7 +24,7 @@ public class LifeController : MonoBehaviour
     void Update()
     {
         text.text = PrintLife();
-        if (CheckLife()) ResetBall();
+        
     }
 
     private string PrintLife()
@@ -48,16 +47,21 @@ public class LifeController : MonoBehaviour
     {
         if (remainedLife <= 0)
         {
-            gm.RestartGame();
+            // Buraya: 
+            // Oyun bitti devam etmek istiyor musunuz?
+            // Bool'u gelecek.
+            gm.ResetGame();
             return false;
         }
         else if (remainedLife > maxLife) remainedLife = maxLife;
+        gm.StartGame();
         return true;
     }
 
     public void DecreaseLife()
     {
         remainedLife--;
+        CheckLife();
     }
     
     public void IncreaseRemainedLife()
@@ -75,6 +79,6 @@ public class LifeController : MonoBehaviour
     public void ResetBall(bool isFall = false)
     {
         if (isFall) return;
-        else gm.ResetGame();
+        // else gm.ResetGame();
     }
 }

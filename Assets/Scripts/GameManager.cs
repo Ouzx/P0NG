@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,11 +15,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        SceneName = SceneManager.GetActiveScene().name;
     }
     #endregion 
-
-    private string SceneName;
 
     public Ball ball;
     private ScoreBoard scoreBoard;
@@ -35,18 +31,11 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
-    private void StartGame()
-    {
-        lifeController.ResetLives();
-        scoreBoard.ResetScore();
+    public void StartGame(){
         ball.Invoke("StartBall", 1f);
     }
-    public void ResetGame()
-    {
-        ball.Invoke("StartBall", 1f);
-    }
-    public void RestartGame()
-    {
+
+    public void ResetGame(){
         ball.StopAllCoroutines();
         lifeController.StopAllCoroutines();
         scoreBoard.StopAllCoroutines();
@@ -56,9 +45,7 @@ public class GameManager : MonoBehaviour
         lifeController.ResetLives();
         scoreBoard.ResetScore();
         poolManager.ResetPools();
-        ball.Invoke("StartBall", 1f);
+        
+        StartGame();
     }
-    
-
-    
 }

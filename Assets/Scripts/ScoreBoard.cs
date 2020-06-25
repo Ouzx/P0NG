@@ -19,6 +19,9 @@ public class ScoreBoard : MonoBehaviour
     #endregion
 
     private int score = 0;
+    
+    [SerializeField]
+    private int BouncePoint = 1;
     public TextMeshProUGUI text;
 
     void Update()
@@ -31,8 +34,13 @@ public class ScoreBoard : MonoBehaviour
         score += point;
     }
 
+    public void AddBouncePoint(){
+        score += BouncePoint;
+    }
+
     public void ResetScore()
     {
         score = 0;
     }
+
 }
