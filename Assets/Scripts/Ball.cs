@@ -25,22 +25,23 @@ public class Ball : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-        if (rb != null)
+        CheckBallSpeed();
+    }
+
+    private void CheckBallSpeed()
+    {
+        if (rb)
         {
             if (rb.velocity.magnitude > maxSpeed)
             {
-                float ratio = 1;
-                ratio = rb.velocity.magnitude / maxSpeed;
-                rb.AddForce(rb.velocity/ratio);
+                float ratio = rb.velocity.magnitude / maxSpeed;
+                if (ratio != 0) rb.velocity = (rb.velocity / ratio);
             }
             else if (rb.velocity.magnitude < minSpeed)
             {
-                float ratio = 1;
-                ratio = rb.velocity.magnitude / maxSpeed;
-                rb.AddForce(rb.velocity/ratio);
+                float ratio = rb.velocity.magnitude / maxSpeed;
+                if (ratio != 0) rb.velocity = (rb.velocity / ratio);
             }
-            Debug.Log(rb.velocity.magnitude);
         }
     }
 
