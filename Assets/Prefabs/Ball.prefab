@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: {x: 30, y: 40}
+  maxSpeed: 11
+  minSpeed: 9
 --- !u!50 &2687322619842073846
 Rigidbody2D:
   serializedVersion: 4
