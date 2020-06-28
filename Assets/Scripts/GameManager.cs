@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     private ScoreBoard scoreBoard;
     private LifeController lifeController;
     private PoolManager poolManager;
-    
+
     void Start()
     {
         poolManager = PoolManager.Instance;
@@ -31,21 +31,24 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
-    public void StartGame(){
+    public void StartGame()
+    {
         ball.Invoke("StartBall", 1f);
     }
 
-    public void ResetGame(){
-        ball.StopAllCoroutines();
-        lifeController.StopAllCoroutines();
-        scoreBoard.StopAllCoroutines();
-        poolManager.StopAllCoroutines();
-        StopAllCoroutines();
+    // public void ResetGame()
+    // {
+    //     ball.StopAllCoroutines();
+    //     lifeController.StopAllCoroutines();
+    //     scoreBoard.StopAllCoroutines();
+    //     poolManager.StopAllCoroutines();
+    //     StopAllCoroutines();
 
-        lifeController.ResetLives();
-        scoreBoard.ResetScore();
-        poolManager.ResetPools();
-        
-        StartGame();
-    }
+    //     lifeController.ResetLives();
+    //     scoreBoard.ResetScore();
+    //     poolManager.ResetPools();
+
+    //     StartGame();
+    // }
+    
 }

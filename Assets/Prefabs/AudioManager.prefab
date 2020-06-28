@@ -48,29 +48,41 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 886fc02a6b5a98c4ca68a6598c8b1e6e, type: 3}
     volume: 0.4
     pitch: 1
+    playOnAwake: 0
     loop: 0
     source: {fileID: 0}
   - name: WallBounce
     clip: {fileID: 8300000, guid: 2b2c08ffc24908040b5b490275f88efb, type: 3}
     volume: 0.4
     pitch: 1
+    playOnAwake: 0
     loop: 0
     source: {fileID: 0}
   - name: PointTaken
     clip: {fileID: 8300000, guid: ece978b997a39ea4aa6a9aab5cfb18f1, type: 3}
     volume: 0.6
     pitch: 1
+    playOnAwake: 0
     loop: 0
     source: {fileID: 0}
   - name: Fell
     clip: {fileID: 8300000, guid: f7f34d36e4b2faa42a8f4fbe832e432e, type: 3}
     volume: 0.6
     pitch: 1
+    playOnAwake: 0
     loop: 0
     source: {fileID: 0}
   - name: ThemeSong
     clip: {fileID: 8300000, guid: 9117c2c41d89255449b0cabd36e9ab2e, type: 3}
-    volume: 0.25
+    volume: 0.05
     pitch: 1
+    playOnAwake: 1
     loop: 1
+    source: {fileID: 0}
+  - name: Click
+    clip: {fileID: 8300000, guid: b3dc6f0f1919e604dbafa88b30acff84, type: 3}
+    volume: 1
+    pitch: 3
+    playOnAwake: 0
+    loop: 0
     source: {fileID: 0}

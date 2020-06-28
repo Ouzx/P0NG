@@ -8,6 +8,7 @@ public class LifeController : MonoBehaviour
 {
     private int maxLife = 3;
     private int remainedLife = 3;
+    public bool continueGame = false;
 
     private char life = '♥';
     private char dead = 'x';
@@ -15,6 +16,7 @@ public class LifeController : MonoBehaviour
 
     private GameManager gm;
     public TextMeshProUGUI text;
+    public GameObject endMenu;
     void Start()
     {
         gm = GameManager.Instance;
@@ -24,13 +26,13 @@ public class LifeController : MonoBehaviour
     void Update()
     {
         text.text = PrintLife();
-        
+
     }
 
     private string PrintLife()
     {
         int counter = 0;
-        for(int i = 0; i < maxLife; i++)
+        for (int i = 0; i < maxLife; i++)
         {
             if (counter < maxLife - remainedLife)
             {
@@ -47,11 +49,8 @@ public class LifeController : MonoBehaviour
     {
         if (remainedLife <= 0)
         {
-            // Buraya: 
-            // Oyun bitti devam etmek istiyor musunuz?
-            // Bool'u gelecek.
-            gm.ResetGame();
-            return false;
+            endMenu.GetComponent<EndMenu>().PopEndMenu();
+            IncreaseRemainedLife();
         }
         else if (remainedLife > maxLife) remainedLife = maxLife;
         gm.StartGame();
@@ -63,7 +62,7 @@ public class LifeController : MonoBehaviour
         remainedLife--;
         CheckLife();
     }
-    
+
     public void IncreaseRemainedLife()
     {
         remainedLife++;
