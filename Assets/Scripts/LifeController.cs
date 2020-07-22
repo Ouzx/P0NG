@@ -53,13 +53,13 @@ public class LifeController : MonoBehaviour
             IncreaseRemainedLife();
         }
         else if (remainedLife > maxLife) remainedLife = maxLife;
-        gm.StartGame();
+        if (Ball.ballCount <= 1) gm.StartGame();
         return true;
     }
 
     public void DecreaseLife()
     {
-        remainedLife--;
+        if (Ball.ballCount <= 1) remainedLife--;
         CheckLife();
     }
 

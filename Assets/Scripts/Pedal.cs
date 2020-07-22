@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class Pedal : MonoBehaviour
 {
+
+    #region Singelton
+    public static Pedal Instance;
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+    #endregion
     [SerializeField]
     private float pedalBounding = 1.65f;
 
+    public static bool isSleep = false;
     private float touchBoundx1 = -2.6f;
     private float touchBoundx2 = 2.6f;
     private float touchBoundy1 = -1;
@@ -39,19 +49,22 @@ public class Pedal : MonoBehaviour
         //     rb.MovePosition(new Vector2(-(direction.x), transform.position.y));
         // }
 
-        if (Input.GetMouseButton(0))
+        if (!isSleep)
         {
-            var temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (temp.x >= touchBoundx1 && temp.x <= touchBoundx2
-            && temp.y >= touchBoundy2 && temp.y <= touchBoundy1)
+            if (Input.GetMouseButton(0))
             {
-                rb.MovePosition(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, transform.position.y));
+                var temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if (temp.x >= touchBoundx1 && temp.x <= touchBoundx2
+                && temp.y >= touchBoundy2 && temp.y <= touchBoundy1)
+                {
+                    rb.MovePosition(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, transform.position.y));
+                }
             }
-        }
 
-        var pos = transform.position;
-        if (pos.x > pedalBounding) pos.x = pedalBounding;
-        else if (pos.x < -pedalBounding) pos.x = -pedalBounding;
-        transform.position = pos;
+            var pos = transform.position;
+            if (pos.x > pedalBounding) pos.x = pedalBounding;
+            else if (pos.x < -pedalBounding) pos.x = -pedalBounding;
+            transform.position = pos;
+        }
     }
 }

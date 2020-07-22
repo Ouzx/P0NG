@@ -83,21 +83,21 @@ public class PoolManager : MonoBehaviour
             ReservedPositions.Remove(position);
     }
 
-    public void ResetPools()
-    {
-        foreach (Pool pool in pools)
-        {
-            foreach(GameObject gos in pool.prefabs)
-            {
-                var temp = gos.GetComponent<Point>();
-                if(temp != null) temp.isDestruction = true;                
-                Destroy(gos);
-            }
-            pool.prefabs.Clear();
-        }
-        ReservedPositions.Clear();
-        FillPools();
-    }
+    // public void ResetPools()
+    // {
+    //     foreach (Pool pool in pools)
+    //     {
+    //         foreach(GameObject gos in pool.prefabs)
+    //         {
+    //             var temp = gos.GetComponent<Point>();
+    //             if(temp != null) temp.isDestruction = true;                
+    //             Destroy(gos);
+    //         }
+    //         pool.prefabs.Clear();
+    //     }
+    //     ReservedPositions.Clear();
+    //     FillPools();
+    // }
 
     private void FillPools()
     {

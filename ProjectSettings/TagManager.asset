@@ -11,6 +11,18 @@ TagManager:
   - Pool
   - Pools
   - Wall
+  - BSleep
+  - BShrink
+  - BEnlarge
+  - BX2
+  - BExtraBall
+  - BBomb
+  - BFlame
+  - BPowerDown
+  - BPowerUp
+  - BRotten
+  - BTransportation
+  - BPoison
   layers:
   - Default
   - TransparentFX

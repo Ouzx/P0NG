@@ -9,11 +9,10 @@ public class Ball : MonoBehaviour
     [SerializeField]
     private Vector2 force = new Vector2(12, 16); //velocity = 20 unit
 
-    [SerializeField]
-    private float maxSpeed = 30f;
-    [SerializeField]
-    private float minSpeed = 10f;
+    public float maxSpeed = 11f;
+    public float minSpeed = 9f;
 
+    public static int ballCount = 1;
     private GameManager gm;
 
     private Rigidbody2D rb;
@@ -79,7 +78,10 @@ public class Ball : MonoBehaviour
         if (collision.CompareTag("Fall"))
         {
             FindObjectOfType<AudioManager>().Play("Fell");
-            gm.GetComponent<LifeController>().DecreaseLife();
+            if (ballCount <= 1)
+            {
+                gm.GetComponent<LifeController>().DecreaseLife();
+            }
         }
     }
 
@@ -103,6 +105,14 @@ public class Ball : MonoBehaviour
         int rand = Random.Range(0, 2);
         if (rand == 0) rb.AddForce(force);
         else rb.AddForce(new Vector2(-force.x, force.y));
+    }
+
+    public void AddBall(Vector3 pos)
+    {
+        ballCount++;
+        GameObject ball = Instantiate(gameObject, pos, Quaternion.identity);
+        Ball temp = ball.GetComponent<Ball>();
+        temp.Invoke("StartBall", 0.5f);
     }
 
 }

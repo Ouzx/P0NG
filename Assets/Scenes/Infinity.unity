@@ -3700,26 +3700,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2687322619842073847, guid: d738801ec5f65b245ac563f5b458245a,
-        type: 3}
-      propertyPath: force.x
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2687322619842073847, guid: d738801ec5f65b245ac563f5b458245a,
-        type: 3}
-      propertyPath: force.y
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 2687322619842073847, guid: d738801ec5f65b245ac563f5b458245a,
-        type: 3}
-      propertyPath: minSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2687322619842073847, guid: d738801ec5f65b245ac563f5b458245a,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 2687322619842073850, guid: d738801ec5f65b245ac563f5b458245a,
         type: 3}
       propertyPath: m_Name

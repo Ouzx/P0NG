@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public Ball ball;
     private ScoreBoard scoreBoard;
-    private LifeController lifeController;
+    public LifeController lifeController;
     private PoolManager poolManager;
 
     void Start()
